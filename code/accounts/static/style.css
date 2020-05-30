@@ -1,0 +1,37 @@
+#body{
+    background-color: lightgray;
+    text-align: center;
+}
+
+
+#taskform{
+    background-color: yellow;
+    width:30%;
+    padding : 5px;
+    position: relative;
+    left: 35%;
+
+}
+
+
+#username_forgot_pass{
+    width: 30%;
+}
+
+
+.message{
+    color: red;
+}
+
+#register{
+    text-align: left;
+    position: relative;
+    left: 25%;
+}
+
+table.table-striped.table-dark{
+    width: 90%;
+    position: relative;
+    left:5%;
+
+}

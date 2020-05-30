@@ -1,0 +1,90 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id = "body">
+    <br>
+<h1>ToDo List for {{user.username}}</h3>
+    <p>Click on task to view task description</p>
+<br>
+
+<table class="table table-striped table-dark"> 
+    
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Completed?</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for t in task %}
+
+        <tr>
+            <td> <a href="{% url 'post' t.id %}">{{t.task}}</a></td>
+            {% if t.priority == 1 %}
+            <td>High</td>
+            {% elif t.priority == 2 %}
+            <td>Medium</td>
+            {% else %}
+            <td>Low</td>
+            {% endif %}
+            <td><a href="{% url 'delete' t.id user.username %}">Completed</a></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+
+  </table>
+
+
+<br>
+<div id = "taskform">
+    <br>
+<label for=""> <b> <u> Input Your Tasks for Today! </u></b></label>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="">Task:</label> <br>
+    <input type="text" name = 'task' id = 'task'> <br> <br>
+
+    <label for="">Priority:</label> <br>
+    <input type="radio" name = 'priority' value = 1> High <br>
+    <input type="radio" name = 'priority' value = 2> Medium <br>
+    <input type="radio" name = 'priority' value = 3> Low <br>
+    <br>
+    <label for="">Description</label> <br>
+    <input type="text" name= 'description' id = 'description'> <br>
+
+    <br>
+    <input type="hidden" name = 'completed' value = No>
+
+    <input type="hidden" name = 'account' value = {{user.username}}>
+    <input type="submit" label = "submit" onclick=format_inputs()> 
+</form>
+<br>
+
+{% if messages %}
+{% for message in messages %}
+<h3 class = 'message'>{{message}}</h3>
+{%endfor%}
+{% endif %}
+<br>
+<br>
+</div>
+<br>
+<br>
+
+
+
+</body>
+</html>
+{% endblock %}
