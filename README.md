@@ -11,3 +11,12 @@ Dynamic website that contains a to do list and shows a graph of the number of ta
 - a "forgot password" feature that sends a password to user's email that can be used to login
 - matplotlib to create the graph
 - Foreign/Primary Key to set a many to one relationship between the databases
+
+- Must create own .env file with: 
+- EMAIL_HOST_USER
+- EMAIL_HOST_PASSWORD
+- NAME
+- USER
+- PASSWORD
+- HOST
+- SECRET_KEY
