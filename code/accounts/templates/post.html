@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <h1> <b> <u> Description of {{post.task}} </u></b></h1>
+    <br>
+    <h3>{{post.description}}</h3>
+    <br>
+    <br>
+    <button onclick = "location.href='{% url 'todo' user.username %}'">Go back to Todo List</button>
+</body>
+</html>
+
+
+
+
+
+
+{% endblock %}
