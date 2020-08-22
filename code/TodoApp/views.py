@@ -32,7 +32,7 @@ def todo(request, _username):
 
         else:
             messages.error(
-                request, "Error!, You didn't complete the form properly.")
+                request, "Error! You didn't complete the form properly.")
 
     task = user.tododb_set.order_by('priority')
 

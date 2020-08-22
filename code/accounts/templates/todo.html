@@ -48,28 +48,33 @@
 
 
 <br>
-<div id = "taskform">
     <br>
 <label for=""> <b> <u> Input Your Tasks for Today! </u></b></label>
-<form action="" method="POST">
+<div class="container bg-secondary p-2" style="max-width: 400px">
+<form class="col s12" method="POST">
     {% csrf_token %}
-    <label for="">Task:</label> <br>
-    <input type="text" name = 'task' id = 'task'> <br> <br>
-
-    <label for="">Priority:</label> <br>
+      <div class="input-field col s12">
+        <label for="">Task:</label> <br>
+    <input type="text" name = 'task' id = 'task'>
+      </div>
+      <div class="input-field col s12 mt-2">
+        <label for="">Priority:</label> <br>
     <input type="radio" name = 'priority' value = 1> High <br>
     <input type="radio" name = 'priority' value = 2> Medium <br>
     <input type="radio" name = 'priority' value = 3> Low <br>
-    <br>
-    <label for="">Description</label> <br>
-    <input type="text" name= 'description' id = 'description'> <br>
+      </div>
+      <div class="input-field col s12 mt-2">
+        <label for="">Description:</label> <br>
+    <input type="text" name= 'description' id = 'description'>
+      </div>
+      <div class="input-field col s12">
+        <input type="hidden" name = 'completed' value = No>
+      </div>
+      <input type="hidden" name = 'account' value = {{user.username}}>
+      <input type="submit" label = "submit" onclick=format_inputs() class='btn btn-success my-2'> 
+  </form>
+</div>
 
-    <br>
-    <input type="hidden" name = 'completed' value = No>
-
-    <input type="hidden" name = 'account' value = {{user.username}}>
-    <input type="submit" label = "submit" onclick=format_inputs()> 
-</form>
 <br>
 
 {% if messages %}
