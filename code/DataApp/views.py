@@ -7,15 +7,18 @@ import matplotlib.pyplot as plt
 from django.shortcuts import render
 import datetime
 import matplotlib
+from io import BytesIO
+import base64
 matplotlib.use('Agg')
 
 # Create your views here.
 
 
 def make_graph(x, y):
-    img_file = "./accounts/static/data_img/data.png"
-    if os.path.isfile(img_file):
-        os.remove(img_file)
+    img = BytesIO()
+    # img_file = "staticfiles/data_img/data.cf64bd57e027.png"
+    # if os.path.isfile(img_file):
+    #     os.remove(img_file)
 
     months = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June",
               7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December"}
@@ -28,8 +31,11 @@ def make_graph(x, y):
     plt.xlabel('Days')
     plt.title(
         f"Number of Task(s) done in {months[datetime.datetime.today().month]}")
-    plt.savefig('accounts/static/data_img/data.png')
+    plt.savefig(img, format='png')
     plt.close()
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    return plot_url
 
 
 def get_data(request, _username):
@@ -48,9 +54,9 @@ def get_data(request, _username):
         y.append(data.num_of_task)
 
 # makes the graph using the x,y values
-    make_graph(x, y[:1+datetime.datetime.today().day])
+    plt = make_graph(x, y[:1+datetime.datetime.today().day])
 
-    return render(request, 'view_data.html')
+    return render(request, 'view_data.html', {'plot_url': plt})
 
 
 def create_datatable(user):

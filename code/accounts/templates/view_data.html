@@ -1,24 +1,21 @@
-{% extends 'base.html' %}
-
-{% block body %}
-
+{% extends 'base.html' %} {% block body %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <h1> <b><u> Data Tracking </u></b></h1>
-    <br>
-    <img src="{% static 'data_img/data.png' %}" class="img-fluid" alt="Responsive image">
-<br><br>
-</body>
+  </head>
+  <body>
+    <h1>
+      <b><u> Data Tracking </u></b>
+    </h1>
+    <br />
+    <img src="data:image/png;base64, {{ plot_url }}" />
+    <br /><br />
+  </body>
 </html>
-
-
 
 {% endblock %}
